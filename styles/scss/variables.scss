@@ -1,0 +1,20 @@
+$maxWidth: 1440;
+$mainColor: #FFB400;
+$textColor: #767676;
+$headerColor: #2B2B2B;
+$background: #FAFAFA;
+
+@mixin adaptiveFont($pcSize, $mobSize){
+  $addSize: $pcSize - $mobSize;
+  $addMobSize: $addSize + $addSize * 0.7;
+  @media(max-width: 767px){
+    font-size: calc(#{$mobSize + px} + #{$addMobSize} * ((100vw - 320px) / #{$maxWidth}));
+  }
+  @media(min-width: 767px){
+    font-size: calc(#{$mobSize + px} + #{$addSize} * (100vw / #{$maxWidth}));
+  }
+}
+@mixin adaptiveValue($property,$startSize,$minSize){
+  $addSize: $startSize - $minSize;
+  #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / (#{$maxWidth - 320})));
+}
